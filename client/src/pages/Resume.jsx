@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Upload, FileText, CheckCircle, AlertCircle, X } from 'lucide-react';
 import Navbar from '../components/Navbar';
-import axios from 'axios';
+import api from '../api';
 
 const Resume = () => {
     const [file, setFile] = useState(null);
@@ -27,7 +27,7 @@ const Resume = () => {
 
         setAnalyzing(true);
         try {
-            const response = await axios.post('http://localhost:5000/api/resume/upload', formData, {
+            const response = await api.post('/resume/upload', formData, {
                 headers: { 'Content-Type': 'multipart/form-data' }
             });
             setResult(response.data.data);

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Sparkles, Map, ArrowRight, Clock, CheckCircle, FileText, Play } from 'lucide-react';
 import Navbar from '../components/Navbar';
-import axios from 'axios';
+import api from '../api';
 
 const LearningPath = () => {
     const [goal, setGoal] = useState('');
@@ -14,7 +14,7 @@ const LearningPath = () => {
         if (!goal) return;
         setLoading(true);
         try {
-            const res = await axios.post('http://localhost:5000/api/skills/generate', { goal });
+            const res = await api.post('/skills/generate', { goal });
             setRoadmap(res.data.roadmap);
         } catch (err) {
             console.error(err);

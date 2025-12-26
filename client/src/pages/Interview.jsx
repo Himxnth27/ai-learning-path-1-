@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { HelpCircle, ChevronDown, ChevronUp, MessageCircle } from 'lucide-react';
 import Navbar from '../components/Navbar';
-import axios from 'axios';
+import api from '../api';
 
 const Interview = () => {
     const [questions, setQuestions] = useState([]);
@@ -13,7 +13,7 @@ const Interview = () => {
     useEffect(() => {
         const fetchQuestions = async () => {
             try {
-                const res = await axios.get('http://localhost:5000/api/interview');
+                const res = await api.get('/interview');
                 setQuestions(res.data);
             } catch (err) {
                 console.error(err);
